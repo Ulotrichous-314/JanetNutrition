@@ -1,7 +1,7 @@
 /*
 Theme name: JanetNutrition
 Author: Will Ledsham
-Version: 0.1.0
+Version: 0.1.1
 GitHub Theme URI: https://github.com/Ulotrichous-314/JanetNutrition
 GitHub Branch: master
 */
@@ -17,13 +17,15 @@ Green: #81c02d
     font-family: Arial, Helvetica, sans-serif;
 }
 p {
-    margin-bottom: 24px
+    margin-top: 12px
 }
 a {
-    
+    color: #92278f;
+    text-decoration: none;
 }
 a:hover {
-    
+    color: #81c02d;
+    text-decoration: none;
 }
 h1, h3 {
     color: #92278f;
@@ -72,6 +74,12 @@ header div {
 }
 #header-contacts {
     float: right;
+    color: #81c02d;
+}
+
+/* Post meta */
+.post-meta {
+    font-size: 12px;
     color: #81c02d;
 }
 
@@ -252,10 +260,11 @@ footer {
     padding: 24px;
     text-align: center;
 }
-#footer-content p , a {
+#footer-content p , #footer-content a {
     font-size: 12px;
     color: #707070;
     text-decoration: none;
+    margin: 0;
 }
 #footer-content a:hover {
     color: #2D2D2D;
