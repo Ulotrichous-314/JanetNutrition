@@ -14,8 +14,8 @@
             <p><?php _e('No posts were found. Sorry.','jn'); ?>
             <a href="<?php echo get_option('home'); ?>"><?php _e('Return to homepage','jn') ?></a></p>
             <?php endif; ?>
-        </div>
-    </div>
+        </div><!-- #content -->
+    </div><!-- #main -->
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>
 

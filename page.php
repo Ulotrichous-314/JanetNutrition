@@ -12,7 +12,7 @@
                     <h2><?php _e('Nothing Found','jn') ?></h2>
                     <p><a href="<?php echo get_option('home'); ?>"><?php _e('Return to homepage','jn') ?></a></p>
             <?php endif; ?>
-            </div>
-        </div>
+            </div><!-- #content -->
+        </div><!-- #main -->
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>
