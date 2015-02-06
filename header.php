@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<?php $contact1=get_option("jn_contact_1"); ?>
+<?php $contact2=get_option("jn_contact_2"); ?>
 <head>
 <?php wp_head(); ?>
 </head>
@@ -14,7 +16,8 @@
                 <h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
             </div>
             <div id="header-contacts">
-                <p>Contact details here!</p>
+                <p><?php echo $contact1; ?></p>
+                <p><?php echo $contact2; ?></p>
             </div>
         </header>
         <a class="toggleMenu" href="#">Menu</a>

@@ -51,18 +51,18 @@ function jn_post_meta() {
  * @since Janet Nutrition 0.0
  */
 
-function jl_widgets_init() {
+function jn_widgets_init() {
     register_sidebar( array(
-        'name' => __('Main Sidebar', 'jl'),
+        'name' => __('Main Sidebar', 'jn'),
         'id' => 'sidebar-1',
-        'description' => __('The default sidebar to be used on pages','jl'),
+        'description' => __('The default sidebar to be used on pages','jn'),
         'before_widget' => '<aside id="%1$s" class="widget %2$s">',
         'after_widget' => '</aside>',
         'before_title' => '<h3 class="widget-title">',
         'after_title' => '</h3>'
     ));
 }
-add_action('widgets_init','jl_widgets_init');
+add_action('widgets_init','jn_widgets_init');
 
 /*
  * Creates custom post type called 'recipe'
@@ -90,7 +90,7 @@ function post_type_labels( $singular, $plural = '' ) {
 
 
 //Create the post type
-function jl_create_post_type() {
+function jn_create_post_type() {
 	$args = array(
 	'labels' => post_type_labels('Recipe'),
 	'public' => true,
@@ -107,10 +107,10 @@ function jl_create_post_type() {
 	);
 	register_post_type('recipe',$args);
 }
-add_action('init','jl_create_post_type');
+add_action('init','jn_create_post_type');
 
 //Create custom taxonomy 
-function jl_recipe_taxonomies() {
+function jn_recipe_taxonomies() {
     $labels = array(
         'name'              => _x( 'Recipe Categories', 'taxonomy general name' ),
         'singular_name'     => _x( 'Recipe Category', 'taxonomy singular name' ),
@@ -130,13 +130,13 @@ function jl_recipe_taxonomies() {
     );
     register_taxonomy('recipe_category','recipe', $args);
 }
-add_action('init', 'jl_recipe_taxonomies',0);
+add_action('init', 'jn_recipe_taxonomies',0);
 
 //Create meta box for recipe info
 function recipe_info_box() {
     add_meta_box(
         'recipe_info_box',
-        __('Recipe Info', 'jl'),
+        __('Recipe Info', 'jn'),
         'recipe_info_box_contents',
         'recipe',
         'side',
@@ -178,4 +178,64 @@ function recipe_info_box_save($post_id) {
     update_post_meta( $post_id, 'recipe_preparation_time', $preparation_time);
     update_post_meta( $post_id, 'recipe_cooking_time');
 }
+
+/*
+ * Theme options page
+ * 
+ * @since Janet Nutrition 0.1.5
+ */
+
+function jn_admin_menu() {
+    add_submenu_page('themes.php', 'Theme Settings', 'Theme Settings', 'manage_options', 'theme_settings', 'theme_settings_page');
+}
+add_action('admin_menu','jn_admin_menu');
+
+function theme_settings_page() {
+
+    
+?>
+    <div class="wrap">
+        <?php screen_icon('themes'); ?> <h2>Theme Settings</h2>
+        <?php 
+        if (isset($_POST["update_settings"])) {
+            // Do the saving
+            $contact1 = esc_attr($_POST["contact1"]);   
+            update_option("jn_contact_1", $contact1);
+            $contact2 = esc_attr($_POST["contact2"]);   
+            update_option("jn_contact_2", $contact2);
+            echo '<div id="message" class="updated">Settings saved</div>';
+        }
+        $contact1 = get_option("jn_contact_1");
+        $contact2 = get_option("jn_contact_2");
+        ?>
+        <h3>Contact details</h3>
+        <form method="POST" action="">
+            <input type="hidden" name="update_settings" value="Y" />
+            <table class="form-table">
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="email">First line:</label> 
+                    </th>
+                    <td>
+                        <input type="text" name="contact1" value="<?php echo $contact1; ?>" size="25" />
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <label for="number">Second line:</label>
+                    </th>
+                    <td>
+                        <input type="text" name="contact2" value="<?php echo $contact2; ?>" size="25" />
+                    </td>
+                </tr>
+            </table>
+            <p>
+                <input type="submit" value="Save settings" class="button-primary"/>
+            </p>
+        </form>
+    </div>
+<?php
+}
+
+
 ?>
