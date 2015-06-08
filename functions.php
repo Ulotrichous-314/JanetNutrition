@@ -203,10 +203,13 @@ function theme_settings_page() {
             update_option("jn_contact_1", $contact1);
             $contact2 = esc_attr($_POST["contact2"]);   
             update_option("jn_contact_2", $contact2);
+            $footertxt = esc_attr($_POST["footer"]);
+            update_option("jn_footer_txt", $footertxt);
             echo '<div id="message" class="updated">Settings saved</div>';
         }
         $contact1 = get_option("jn_contact_1");
         $contact2 = get_option("jn_contact_2");
+        $footertxt = get_option("jn_footer_txt");
         ?>
         <h3>Contact details</h3>
         <form method="POST" action="">
@@ -229,6 +232,8 @@ function theme_settings_page() {
                     </td>
                 </tr>
             </table>
+            <h3>Footer Text</h3>
+            <input type="text" name="footer" value="<?php echo $footertxt; ?>" size="50" />
             <p>
                 <input type="submit" value="Save settings" class="button-primary"/>
             </p>
