@@ -17,7 +17,7 @@ get_header(); ?>
                     <div <?php post_class(); ?> id="post-<?php the_ID(); ?>"></div>
                     <h2><?php the_title(); ?></h2>
                     <div><?php the_content('<p>Read the rest of this entry &raquo;</p>'); ?></div>
-
+                    <?php comments_template(); ?>
                     <!--// End the loop.-->
                     <?php endwhile; else:?>
                         <p>Sorry no posts matched your criteria.</p>

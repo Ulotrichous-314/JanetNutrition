@@ -1,7 +1,7 @@
 /*
 Theme name: JanetNutrition
 Author: Will Ledsham
-Version: 0.1.7
+Version: 0.1.8
 GitHub Theme URI: https://github.com/Ulotrichous-314/JanetNutrition
 GitHub Branch: master
 */
@@ -263,6 +263,12 @@ nav ul ul {
 }
 .widget input[type=text] {
     width: 90%;
+} 
+
+/* Comments */
+
+#comments p label {
+    display: block;
 } 
 
 /* Footer */
